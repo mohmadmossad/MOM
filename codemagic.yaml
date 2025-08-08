@@ -1,16 +1,8 @@
 workflows:
-  build_android:
+  build-android:
     name: Build Android APK
     environment:
       flutter: stable
-      xcode: none
-    triggering:
-      events:
-        - push
-      branch_patterns:
-        - pattern: "main"
-          include: true
-          source: true
     scripts:
       - name: Install dependencies
         script: |
@@ -20,3 +12,7 @@ workflows:
           flutter build apk --release
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
+    triggering:
+      events:
+        - push
+        - pull_request
